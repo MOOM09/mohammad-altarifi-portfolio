@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MO-ALTARIFI</title>
+    <link rel="icon" type="image/jpg" href="IMAGE/LOGO/MY LOGO.jpg">
     
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -49,7 +49,7 @@
     <!-- NAVBAR -->
     <nav aria-label="Main navigation" class="navbar navbar-expand-xl navbar-light bg-white sticky-top custom-navbar">
         <div class="container">
-            <a class="navbar-brand fw-bold" href="#">Mo Al-Tarifi</a>
+            <img id="logo" src="IMAGE/LOGO/SCREEN.png" alt="Tarifi Technology Logo" style="width: 150px; height: auto;">
 
             <button class="navbar-toggler"
                     type="button"
@@ -107,7 +107,7 @@
                     <p>Testing software to find issues and improve reliability and quality.</p>
                 </div>
 
-                <a href="IMAGE/AI WEB.jpeg"
+                <a href="IMAGE/CV1.pdf"
                 >Download My CV ⬇</a>
             </div>
 
@@ -184,11 +184,11 @@
                     <h3>PRO HEALTH</h3>
                     <p>Graduation Project</p>
                     <div class="tags">
-                        <span>C++</span>
-                        <span>PocketBase</span>
-                        <span>Gemini API</span>
-                        <span>Manual Testing</span>
-                    </div>
+    <i class="fa-solid fa-code" title="C++"></i>
+    <i class="fa-solid fa-database" title="PocketBase"></i>
+    <i class="fa-solid fa-robot" title="Gemini API"></i>
+    <i class="fa-solid fa-vial" title="Manual Testing"></i>
+</div>
                 </div>
             </div>
 
@@ -200,13 +200,13 @@
                     <h3>MEET GRID</h3>
                     <p>Field Training Project</p>
                     <div class="tags">
-                        <span>ASP.NET</span>
-                        <span>C#</span>
-                        <span>HTML</span>
-                        <span>CSS</span>
-                        <span>Entity Framework</span>
-                        <span>MySQL</span>
-                    </div>
+    <i class="fa-brands fa-microsoft" title="ASP.NET"></i>
+    <i class="fa-solid fa-code" title="C#"></i>
+    <i class="fa-brands fa-html5" title="HTML"></i>
+    <i class="fa-brands fa-css3-alt" title="CSS"></i>
+    <i class="fa-solid fa-layer-group" title="Entity Framework"></i>
+    <i class="fa-solid fa-database" title="MySQL"></i>
+</div>
                 </div>
             </div>
 
@@ -368,19 +368,20 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 <script>
-    // =========================================
-    // 1. Theme Toggle (Dark Mode)
-    // =========================================
+      // darkMode
     const themeToggle = document.getElementById("theme-toggle");
+    const logo = document.getElementById("logo");
     const savedTheme = localStorage.getItem("theme");
 
     if (savedTheme === "dark") {
         document.body.classList.add("dark-mode");
         themeToggle.textContent = "☀️";
         themeToggle.setAttribute("aria-label", "Switch to light mode");
+        logo.src = "IMAGE/LOGO/black.png";
     } else {
         themeToggle.textContent = "🌙";
         themeToggle.setAttribute("aria-label", "Switch to dark mode");
+        logo.src = "IMAGE/LOGO/SCREEN.png";
     }
 
     themeToggle.addEventListener("click", function () {
@@ -390,17 +391,16 @@
         if (isDark) {
             themeToggle.textContent = "☀️";
             themeToggle.setAttribute("aria-label", "Switch to light mode");
+            logo.src = "IMAGE/LOGO/black.png";
             localStorage.setItem("theme", "dark");
         } else {
             themeToggle.textContent = "🌙";
             themeToggle.setAttribute("aria-label", "Switch to dark mode");
+            logo.src = "IMAGE/LOGO/SCREEN.png";
             localStorage.setItem("theme", "light");
         }
     });
-
-    // =========================================
-    // 2. إغلاق قائمة الـ Burger عند الضغط على رابط
-    // =========================================
+// burger
     const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
     const navbarCollapse = document.getElementById('navMenu');
 
