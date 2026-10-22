@@ -1,163 +1,94 @@
-# Personal Portfolio Website
+# Mohammad Al-Tarifi — Personal Portfolio
 
-## Project Overview
+A responsive personal portfolio showcasing my background as a **Software Engineer**, the technologies I work with, selected projects, training experience, and certifications.
 
-A responsive personal portfolio website built to showcase my background, technical skills, projects, training experience, certifications, and contact information.
-
-The project was developed as part of **Capstone Project 1** to apply foundational front-end development skills using HTML and CSS, along with responsive design, animations, transitions, and interactive features.
+Built with **HTML, CSS, and vanilla JavaScript** — no frontend framework or animation library required.
 
 ## Features
 
-* Responsive personal portfolio design
-* Hero / About section
-* Skills and technology stack
-* Selected projects gallery
-* Certifications section
-* Training and work experience
-* Results section
-* Contact form
-* Social media links
-* Light/Dark mode
-* CSS animations and transitions
-* Hover effects
-* Responsive layouts using CSS Grid and Flexbox
-* Accessibility considerations
-* Mobile, tablet, and desktop support
+- **Animated introduction:** A cinematic opening sequence with an animated title and a particle-based portrait effect.
+- **About me:** A short introduction, my profile picture, and links to my CV and GitHub.
+- **Skills:** Frontend, backend, databases, and quality assurance, with technology icons and hover labels.
+- **Projects:** A showcase of four projects with descriptions and the technologies used.
+- **Certificates:** Clickable certificate previews displayed in a modal.
+- **Experience:** A timeline of my training programs and technical experience.
+- **Contact:** A contact form that prepares an email in the visitor's email application.
+- **Responsive interface:** Layouts for desktop and smaller screens, plus scrolling and hover interactions.
 
-## Technologies Used
+## Technologies
 
-* HTML5
-* CSS3
-* JavaScript
-* Bootstrap
-* Font Awesome
-* Google Fonts
+| Category | Technologies |
+| --- | --- |
+| Portfolio frontend | HTML5, CSS3, JavaScript |
+| Design & interaction | CSS animations, Canvas API, Intersection Observer |
+| Development tools | Git, GitHub, Visual Studio Code |
 
-### Main CSS Concepts
+The technologies shown *inside the portfolio* also include React, PHP, Laravel, C#, ASP.NET, MySQL, PostgreSQL, MongoDB, and QA tools. These represent my skills and project experience; **they are not required to run this website**.
 
-* CSS Grid
-* Flexbox
-* Media Queries
-* Transitions
-* Keyframe Animations
-* Hover Effects
-* Box Shadows
-* Responsive Design
+## Featured Projects
+
+| Project | Description | Technologies |
+| --- | --- | --- |
+| **Pro Health** | Desktop health application with meal planning, calorie tools, and AI-assisted features. | Qt / C++, PocketBase, Gemini API |
+| **Meet Grid** | Web application developed during field training. | ASP.NET, C#, Entity Framework |
+| **Class Hub** | Instructor dashboard for students, quizzes, attendance, and reports. | HTML, CSS, JavaScript, JSON Server |
+| **Visit Jordan** | Tourism platform featuring destinations, hotels, guides, and events. **In development.** | React, Laravel, MySQL (planned stack) |
 
 ## Project Structure
 
 ```text
-Personal-Portfolio/
-│
-├── index.html
-├── style.css
-├── README.md
-│
-└── IMAGE/
-    ├── my.png
-    ├── ph.jpeg
-    ├── LMS.png
-    ├── NOMU.jpeg
-    ├── AIUDCITY.jpeg
-    └── cyber.jpeg
+portfolio/
+├── index.html            # Main page and portfolio sections
+├── style.css             # Layout, styles, and animations
+├── script.js             # UI interactions and opening animation
+├── assets/               # Images, icons, previews, and optional video
+│   └── tech/             # Technology icons
+├── IMAGE/                # Portrait, CV, and certificate files
+└── README.md
 ```
 
-## Sections
+## Run Locally
 
-### About Me
+1. Download or clone the repository.
+2. Open the folder in **Visual Studio Code**.
+3. Start a local server, for example with the **Live Server** extension.
+4. Open the address shown by Live Server (typically `http://127.0.0.1:5500/index.html`).
 
-Introduces my background as a Software Engineer and highlights my interests in Web Development, Software Engineering, and Quality Assurance.
+You can also use Python from the project folder:
 
-### Results
+```bash
+python -m http.server 5500
+```
 
-Displays practical examples of measurable improvements related to testing, releases, production bugs, and page load time.
+Then visit `http://localhost:5500`.
 
-### Stack
+> **Note:** Run the site through a local server instead of opening `index.html` using `file://`. The portrait particle effect reads image pixels from a canvas and may not work correctly under browser restrictions on local files.
 
-Showcases the technologies and tools I work with across:
+## Assets and Configuration
 
-* Frontend
-* Backend
-* Database
-* Quality Assurance
+- Keep the `assets/` and `IMAGE/` folders alongside `index.html` so relative image paths work.
+- The intro portrait uses `IMAGE/my-cutout.png`, and the About section uses `IMAGE/my.png`.
+- Certificate previews use image files inside `IMAGE/`.
+- Background video is optional (`assets/programmer-loop.mp4`); a photographic fallback is used when video is unavailable.
+- Update links, contact details, CV, images, and project information in `index.html` before publishing your own copy.
+- Some technology logos may load from an external icon CDN, so those icons require an internet connection.
 
-### Projects
+## Contact Form
 
-Includes selected projects such as:
-
-* **Pro Health** — Graduation Project
-* **Meet Grid** — Field Training Project
-
-### Certifications
-
-Displays selected certificates and training achievements.
-
-### Work & Training
-
-Includes my training and practical experience at:
-
-* Orange Coding Academy
-* Daleel Academy
-* Hussein Technical University
-* The Hope International
-
-### Contact
-
-Provides a contact form and links to my professional profiles.
-
-## Responsive Design
-
-The website is designed to adapt to different screen sizes using CSS Media Queries.
-
-Responsive layouts were tested across:
-
-* Desktop
-* Tablet
-* Mobile
-* Small mobile screens
-
-CSS Grid and Flexbox are used to adjust layouts and maintain usability across different devices.
+The contact form uses a `mailto:` link to open a prepared message in the visitor's email application. **It does not send emails directly and does not store submitted messages.**
 
 ## Accessibility
 
-The project includes several accessibility considerations, including:
-
-* Semantic HTML elements
-* Alternative text for images
-* Labels associated with form fields
-* Accessible navigation
-* Accessible names for interactive links and buttons
-* Keyboard focus indicators
-* Skip-to-content link
-* Reduced-motion support
-* Required form fields
-
-## How to Run
-
-### Option 1 — Open Locally
-
-1. Clone or download the repository.
-2. Open the project folder.
-3. Open `index.html` in a web browser.
-
-### Option 2 — Using VS Code
-
-1. Open the project folder in Visual Studio Code.
-2. Open `index.html`.
-3. Run the project using a local development server such as Live Server.
-
-## GitHub
-
-This project is version-controlled using Git and hosted on GitHub.
-
-GitHub Profile:
-
-https://github.com/MOOM09
+The portfolio includes semantic sections, navigation labels, a skip link, keyboard-focus styling, and reduced-motion handling for users who prefer fewer animations.
 
 ## Author
 
-**Mohammad Al-Tarifi**
+**Mohammad Al-Tarifi**  
+Software Engineer · Amman, Jordan
 
-Software Engineer
+- **GitHub:** [MOOM09](https://github.com/MOOM09)
+- **LinkedIn:** [Mohammad Al-Tarifi](https://www.linkedin.com/in/mohammad-al-tarifi-5b46b2432)
 
-Web Development | Software Engineering | Quality Assurance
+---
+
+*Designed and built as a personal portfolio to present my software engineering journey.*
