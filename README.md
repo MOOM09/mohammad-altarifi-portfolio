@@ -1,94 +1,88 @@
-# Mohammad Al-Tarifi — Personal Portfolio
+# Mohammad Al-Tarifi | Personal Portfolio
 
-A responsive personal portfolio showcasing my background as a **Software Engineer**, the technologies I work with, selected projects, training experience, and certifications.
+A responsive-ready personal portfolio website showcasing my background, technical skills, projects, certificates, and experience in software development.
 
-Built with **HTML, CSS, and vanilla JavaScript** — no frontend framework or animation library required.
+Built with **HTML, CSS, and vanilla JavaScript**, with a focus on a clean interface, smooth interactions, and bilingual accessibility.
 
 ## Features
 
-- **Animated introduction:** A cinematic opening sequence with an animated title and a particle-based portrait effect.
-- **About me:** A short introduction, my profile picture, and links to my CV and GitHub.
-- **Skills:** Frontend, backend, databases, and quality assurance, with technology icons and hover labels.
-- **Projects:** A showcase of four projects with descriptions and the technologies used.
-- **Certificates:** Clickable certificate previews displayed in a modal.
-- **Experience:** A timeline of my training programs and technical experience.
-- **Contact:** A contact form that prepares an email in the visitor's email application.
-- **Responsive interface:** Layouts for desktop and smaller screens, plus scrolling and hover interactions.
+- **English / Arabic language switcher** with right-to-left (RTL) layout support for Arabic.
+- **Dark and light themes** with saved user preferences.
+- **Animated introduction** and interactive page transitions.
+- **About, Skills, Projects, Certificates, and Experience** sections.
+- **Contact form powered by EmailJS** (requires configuration with your own public key).
+- **CV download**, GitHub, and LinkedIn links.
+- Navigation and section-based layout.
 
 ## Technologies
 
-| Category | Technologies |
+| Technology | Purpose |
 | --- | --- |
-| Portfolio frontend | HTML5, CSS3, JavaScript |
-| Design & interaction | CSS animations, Canvas API, Intersection Observer |
-| Development tools | Git, GitHub, Visual Studio Code |
+| HTML5 | Semantic page structure |
+| CSS3 | Layout, themes, animations, and RTL styling |
+| JavaScript (ES6+) | Interactions, theme and language switching, contact form |
+| EmailJS | Client-side email delivery |
 
-The technologies shown *inside the portfolio* also include React, PHP, Laravel, C#, ASP.NET, MySQL, PostgreSQL, MongoDB, and QA tools. These represent my skills and project experience; **they are not required to run this website**.
+## Getting Started
 
-## Featured Projects
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/MOOM09/mohammad-altarifi-portfolio.git
+   ```
+2. Open the project folder.
+3. Open `index.html` in a browser or use a local development server (for example, VS Code Live Server).
 
-| Project | Description | Technologies |
-| --- | --- | --- |
-| **Pro Health** | Desktop health application with meal planning, calorie tools, and AI-assisted features. | Qt / C++, PocketBase, Gemini API |
-| **Meet Grid** | Web application developed during field training. | ASP.NET, C#, Entity Framework |
-| **Class Hub** | Instructor dashboard for students, quizzes, attendance, and reports. | HTML, CSS, JavaScript, JSON Server |
-| **Visit Jordan** | Tourism platform featuring destinations, hotels, guides, and events. **In development.** | React, Laravel, MySQL (planned stack) |
+No build process or backend server is required to view the portfolio.
 
 ## Project Structure
 
 ```text
-portfolio/
-├── index.html            # Main page and portfolio sections
-├── style.css             # Layout, styles, and animations
-├── script.js             # UI interactions and opening animation
-├── assets/               # Images, icons, previews, and optional video
-│   └── tech/             # Technology icons
-├── IMAGE/                # Portrait, CV, and certificate files
-└── README.md
+.
+├── index.html          # Portfolio structure
+├── style.css           # Styling, themes, animations, and RTL
+├── script.js           # UI interactions, translations, and EmailJS
+├── EMAILJS_SETUP.txt   # Contact form configuration notes
+├── assets/             # Referenced icons and other assets
+└── IMAGE/              # Referenced images and CV
 ```
 
-## Run Locally
+> Make sure the `assets/` and `IMAGE/` directories and their referenced files are included when deploying. They are not bundled in every source-code ZIP.
 
-1. Download or clone the repository.
-2. Open the folder in **Visual Studio Code**.
-3. Start a local server, for example with the **Live Server** extension.
-4. Open the address shown by Live Server (typically `http://127.0.0.1:5500/index.html`).
+## Contact Form Setup
 
-You can also use Python from the project folder:
+The contact form uses [EmailJS](https://www.emailjs.com/).
 
-```bash
-python -m http.server 5500
-```
+1. Create or sign in to an EmailJS account.
+2. Connect an email service and create a template.
+3. In `script.js`, replace `YOUR_PUBLIC_KEY` with your EmailJS **Public Key**.
+4. Confirm that the configured service ID and template ID match your EmailJS dashboard.
+5. Test the form and confirm that an email arrives.
 
-Then visit `http://localhost:5500`.
+The template expects these parameters: `name`, `email`, `title`, and `message`.
 
-> **Note:** Run the site through a local server instead of opening `index.html` using `file://`. The portrait particle effect reads image pixels from a canvas and may not work correctly under browser restrictions on local files.
+**Security:** Do not put your EmailJS private key or email-account password in frontend code. Configure domain restrictions and abuse protection in your EmailJS dashboard as appropriate.
 
-## Assets and Configuration
+## Languages & Themes
 
-- Keep the `assets/` and `IMAGE/` folders alongside `index.html` so relative image paths work.
-- The intro portrait uses `IMAGE/my-cutout.png`, and the About section uses `IMAGE/my.png`.
-- Certificate previews use image files inside `IMAGE/`.
-- Background video is optional (`assets/programmer-loop.mp4`); a photographic fallback is used when video is unavailable.
-- Update links, contact details, CV, images, and project information in `index.html` before publishing your own copy.
-- Some technology logos may load from an external icon CDN, so those icons require an internet connection.
+- Switch between **English (LTR)** and **Arabic (RTL)** using the language control.
+- Toggle between **dark** and **light** themes.
+- Language and theme choices are preserved in browser storage.
 
-## Contact Form
+## Live Website
 
-The contact form uses a `mailto:` link to open a prepared message in the visitor's email application. **It does not send emails directly and does not store submitted messages.**
+[View Portfolio](https://moom09.github.io/mohammad-altarifi-portfolio/)
 
-## Accessibility
+> The live link will work once GitHub Pages is enabled and deployment has completed.
 
-The portfolio includes semantic sections, navigation labels, a skip link, keyboard-focus styling, and reduced-motion handling for users who prefer fewer animations.
-
-## Author
-
-**Mohammad Al-Tarifi**  
-Software Engineer · Amman, Jordan
+## Connect
 
 - **GitHub:** [MOOM09](https://github.com/MOOM09)
 - **LinkedIn:** [Mohammad Al-Tarifi](https://www.linkedin.com/in/mohammad-al-tarifi-5b46b2432)
 
+## Future Improvements
+
+The current feature set is intentionally kept focused. Project case studies, further performance tuning, and other enhancements can be added in later versions.
+
 ---
 
-*Designed and built as a personal portfolio to present my software engineering journey.*
+Made by **Mohammad Al-Tarifi**.
