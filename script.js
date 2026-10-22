@@ -69,7 +69,7 @@
      "Mohammad Al-Tarifi" :"محمد الطريفي",
     "SOFTWARE": "مهندس",
     "ENGINEER": "برمجيات",
-    "& CREATOR.": "ومبدِع.",
+    "& CREATOR.": "ومبدع.",
     "I build": "أُطوّر",
     "websites and apps": "مواقع وتطبيقات الويب",
     ". I enjoy coding, solving problems, and making software easy to use.": "، وأستمتع بالبرمجة وحل المشكلات وجعل البرامج سهلة الاستخدام.",
@@ -693,7 +693,7 @@
   const emailJsConfig = {
     serviceId: 'service_fne0fnh',
     templateId: 'template_c4e75zd',
-    publicKey: 'YOUR_PUBLIC_KEY' // EmailJS > Account > Public Key
+    publicKey: 'myZ-TsEZ29q0CIRC5' // EmailJS > Account > Public Key
   };
   const form = $('#contactForm');
   const toast = $('#toast');
