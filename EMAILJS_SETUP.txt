@@ -1,0 +1,9 @@
+Service ID: service_fne0fnh
+Template ID: template_c4e75zd
+
+Open script.js and replace YOUR_PUBLIC_KEY with the Public Key from EmailJS Dashboard > Account.
+
+Template variables: {{name}}, {{email}}, {{title}}, {{message}}.
+The existing form has no subject field, so title is generated as Portfolio enquiry from [name] to preserve the original design.
+
+Keep your existing assets and IMAGE folders. Test with a real message after configuring the public key.

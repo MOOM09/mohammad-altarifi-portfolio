@@ -11,6 +11,276 @@
   const smoothstep = (a, b, x) => { const t = clamp((x - a) / (b - a), 0, 1); return t * t * (3 - 2 * t); };
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ------ Appearance: beige by default, original navy on DARK ------ */
+  const themeToggle = $('#themeToggle');
+  const themeMeta = $('meta[name="theme-color"]');
+  let darkThemeEnabled = false;
+
+  try {
+    darkThemeEnabled = localStorage.getItem('portfolio-dark-theme') === 'true';
+  } catch (_) {
+    // The switch still works when localStorage is unavailable.
+  }
+
+  function applyTheme() {
+    
+    document.body.classList.toggle('theme-beige', !darkThemeEnabled);
+    themeToggle.setAttribute('aria-pressed', String(darkThemeEnabled));
+    themeToggle.setAttribute(
+      'aria-label',
+      darkThemeEnabled ? 'Disable dark theme' : 'Enable dark theme'
+    );
+    if (themeMeta) {
+      themeMeta.setAttribute('content', darkThemeEnabled ? '#010736' : '#FCF1D0');
+    }
+  }
+
+  applyTheme();
+
+  themeToggle.addEventListener('click', () => {
+    darkThemeEnabled = !darkThemeEnabled;
+    applyTheme();
+    themeToggle.setAttribute('aria-label', translated(darkThemeEnabled ? 'Disable dark theme' : 'Enable dark theme'));
+
+    try {
+      localStorage.setItem('portfolio-dark-theme', String(darkThemeEnabled));
+    } catch (_) {
+      // Keep the currently selected theme for this page.
+    }
+  });
+
+
+
+  /* ------ Arabic / English: text-only localisation (layout and intro unchanged) ------ */
+  const arabicCopy = Object.freeze({
+    "Mohammad Al-Tarifi — Software Engineer & Creative Developer": "محمد الطريفي — مهندس برمجيات ومطوّر إبداعي",
+    "Portfolio of Mohammad Al-Tarifi — Software Engineer building thoughtful web experiences, backend systems, and quality-driven applications.": "معرض أعمال محمد الطريفي، مهندس برمجيات يطوّر مواقع وتطبيقات ويب وأنظمة خلفية ويهتم بجودة البرمجيات.",
+    "Skip to content": "الانتقال إلى المحتوى",
+    "Home": "الرئيسية",
+    "About": "عني",
+    "Expertise": "المهارات",
+    "Projects": "المشاريع",
+    "Experience": "الخبرات",
+    "Certifications": "الشهادات",
+    "Contact": "تواصل",
+    "DARK": "داكن",
+    "LET'S TALK": "تواصل معي",
+    "HI, I'M MOHAMMAD": "مرحبًا، أنا محمد",
+     "Mohammad Al-Tarifi" :"محمد الطريفي",
+    "SOFTWARE": "مهندس",
+    "ENGINEER": "برمجيات",
+    "& CREATOR.": "ومبدِع.",
+    "I build": "أُطوّر",
+    "websites and apps": "مواقع وتطبيقات الويب",
+    ". I enjoy coding, solving problems, and making software easy to use.": "، وأستمتع بالبرمجة وحل المشكلات وجعل البرامج سهلة الاستخدام.",
+    "VIEW PROJECTS": "عرض المشاريع",
+    "ABOUT ME": "نبذة عني",
+    "WEB DEVELOPMENT": "تطوير الويب",
+    "SOFTWARE ENGINEERING": "هندسة البرمجيات",
+    "MY WORKSPACE": "مساحة عملي",
+    "+ / BUILDING IDEAS": "+ / نصنع الأفكار",
+    "SCROLL DOWN": "مرّر للأسفل",
+    "PORTFOLIO — 2026": "ملف أعمالي — 2026",
+    "A little about me.": "تعرّف عليّ أكثر.",
+    "I'm": "أنا",
+    ", a Software Engineer from Jordan. I graduated from the World Islamic Sciences & Education University.": "، مهندس برمجيات من الأردن، وخريج جامعة العلوم الإسلامية العالمية.",
+    "I create websites and apps, work with databases, and test software to make sure it works well. I enjoy learning new skills and working with teams.": "أطوّر مواقع وتطبيقات، وأتعامل مع قواعد البيانات، وأختبر البرمجيات للتأكد من جودتها. أحب تعلّم مهارات جديدة والعمل ضمن فريق.",
+    "DOWNLOAD CV": "تحميل السيرة الذاتية",
+    "VIEW GITHUB": "زيارة GitHub",
+    "My": "",
+    "Skills.": "مهاراتي.",
+    "Projects.": "مشاريعي.",
+    "Certificates.": "شهاداتي.",
+    "Experience.": "خبراتي.",
+    "TOOLS I USE TO BUILD": "الأدوات التي أستخدمها للتطوير",
+    "AND TEST SOFTWARE.": "واختبار البرمجيات.",
+    "Frontend": "الواجهات",
+    "Development": "الأمامية",
+    "Backend": "الأنظمة",
+    "Engineering": "الخلفية",
+    "Database": "قواعد",
+    "Systems": "البيانات",
+    "Quality": "ضمان",
+    "Assurance": "الجودة",
+    "I build easy-to-use websites that work on phones and computers.": "أطوّر مواقع سهلة الاستخدام تعمل على الهواتف وأجهزة الكمبيوتر.",
+    "I write server code and build APIs for web apps.": "أكتب برمجيات الخادم وأطوّر واجهات برمجة التطبيقات (APIs).",
+    "I store, manage, and organize data for apps.": "أنظّم البيانات وأخزّنها وأديرها لخدمة التطبيقات.",
+    "I test software, find bugs, and help fix problems.": "أختبر البرمجيات، وأكتشف الأخطاء، وأساهم في حل المشكلات.",
+    "SOME OF THE APPS": "بعض التطبيقات",
+    "I HAVE WORKED ON.": "التي عملت عليها.",
+    "GRADUATION PROJECT": "مشروع التخرّج",
+    "FIELD TRAINING": "تدريب ميداني",
+    "TEAM PROJECT": "مشروع جماعي",
+    "IN DEVELOPMENT": "قيد التطوير",
+    "A desktop health app with meal plans, calorie tools, and AI features.": "تطبيق صحي للحاسوب يقدّم خطط وجبات، وأدوات لحساب السعرات الحرارية، وميزات بالذكاء الاصطناعي.",
+    "A web app I built during my training using ASP.NET.": "تطبيق ويب طوّرته خلال تدريبي باستخدام ASP.NET.",
+    "A teacher dashboard to manage students, quizzes, attendance, and reports.": "لوحة تحكّم للمدرّس لإدارة الطلاب والاختبارات والحضور والتقارير.",
+    "A tourism website about places, hotels, guides, and events in Jordan. In progress.": "منصة سياحية لاستكشاف الأماكن والفنادق والأدلّاء والفعاليات في الأردن، وما زالت قيد التطوير.",
+    "HAVE A PROJECT IDEA?": "عندك فكرة مشروع؟",
+    "CONTACT ME": "تواصل معي",
+    "COURSES I COMPLETED.": "الدورات التي أكملتها.",
+    "CLICK TO VIEW.": "اضغط لعرض الشهادة.",
+    "Full Stack Development": "تطوير الويب الشامل",
+    "Hussein Technical University — Namu Program": "جامعة الحسين التقنية — برنامج نمو",
+    "Introduction to Artificial Intelligence": "مقدمة في الذكاء الاصطناعي",
+    "Introduction to Cybersecurity": "مقدمة في الأمن السيبراني",
+    "DEVELOPMENT": "التطوير",
+    "ARTIFICIAL INTELLIGENCE": "الذكاء الاصطناعي",
+    "CYBERSECURITY": "الأمن السيبراني",
+    "WHERE I LEARNED": "أماكن تعلّمي",
+    "AND WORKED.": "وعملي.",
+    "I started with the basics and kept learning through real projects.": "بدأت بالأساسيات، وواصلت التعلّم من خلال مشاريع حقيقية.",
+    "SEP 2026 — PRESENT": "سبتمبر 2026 — حتى الآن",
+    "AUG 2026 — PRESENT": "أغسطس 2026 — حتى الآن",
+    "MAR — JUN 2026": "مارس — يونيو 2026",
+    "JUN — SEP 2025": "يونيو — سبتمبر 2025",
+    "Orange Coding Academy": "أكاديمية أورنج للبرمجة",
+    "Daleel Academy": "أكاديمية دليل",
+    "The Hope International": "شركة الرجاء الدولية",
+    "Hussein Technical University": "جامعة الحسين التقنية",
+    "Web Development Trainee": "متدرّب تطوير ويب",
+    "Learning web development with HTML, CSS, JavaScript, PHP, Laravel, and Git.": "أتعلّم تطوير الويب باستخدام HTML وCSS وJavaScript وPHP وLaravel وGit.",
+    "Quality Assurance Trainee": "متدرّب ضمان جودة البرمجيات",
+    "Testing apps, reporting bugs, and using PostgreSQL.": "أختبر التطبيقات، وأوثّق الأخطاء، وأستخدم PostgreSQL.",
+    "ASP.NET Developer — Field Training": "مطوّر ASP.NET — تدريب ميداني",
+    "Worked on Meet Grid using ASP.NET, C#, and Entity Framework.": "عملت على مشروع Meet Grid باستخدام ASP.NET وC# وEntity Framework.",
+    "Full Stack Development — Namu Program": "تطوير ويب شامل — برنامج نمو",
+    "Learned web development with React and MongoDB.": "تعلّمت تطوير الويب باستخدام React وMongoDB.",
+    "HAVE AN": "عندك",
+    "IDEA": "فكرة",
+    "LET'S BUILD IT.": "خلّينا ننفّذها.",
+    "Have a project or a question? Send me a message. I would love to talk.": "عندك مشروع أو سؤال؟ ابعتلي رسالة، ويسعدني نتواصل.",
+    "EMAIL ME": "راسلني",
+    "SEND A MESSAGE": "أرسل رسالة",
+    "YOUR NAME": "اسمك",
+    "EMAIL ADDRESS": "البريد الإلكتروني",
+    "MESSAGE": "الرسالة",
+    "OPEN EMAIL TO SEND": "فتح البريد للإرسال",
+     "SEND MESSAGE": "إرسال الرسالة",
+     "Your message will be sent directly to my inbox.": "سيتم إرسال رسالتك مباشرة إلى بريدي الإلكتروني.",
+    "Opens your email app with a prefilled message. No data is stored here.": "يفتح تطبيق البريد برسالة مجهّزة مسبقًا. لا يتم تخزين أي بيانات هنا.",
+    "DESIGNED & BUILT BY": "تصميم وتطوير",
+    "BACK TO TOP": "العودة للأعلى",
+    "MOHAMMAD AL-TARIFI — ALL RIGHTS RESERVED.": "محمد الطريفي — جميع الحقوق محفوظة.",
+    "MADE WITH": "صُنع بحب",
+    "& A LOT OF COFFEE.": "وكثير من القهوة.",
+    "AMMAN, JORDAN ↗": "عمّان، الأردن ↗",
+    "CERTIFICATE": "شهادة",
+    "Certificate": "الشهادة",
+    "← Previous": "← السابقة",
+    "Next →": "التالية →",
+    "Your name": "اسمك",
+    "you@example.com": "you@example.com",
+    "Tell me a little about your idea...": "احكيلي عن فكرتك...",
+    "View Full Stack Development certificate": "عرض شهادة تطوير الويب الشامل",
+    "View Introduction to Artificial Intelligence certificate": "عرض شهادة مقدمة في الذكاء الاصطناعي",
+    "View Introduction to Cybersecurity certificate": "عرض شهادة مقدمة في الأمن السيبراني",
+    "Close certificate": "إغلاق الشهادة",
+    "Previous certificate": "الشهادة السابقة",
+    "Next certificate": "الشهادة التالية",
+    "Open navigation": "فتح القائمة",
+    "Close navigation": "إغلاق القائمة",
+    "Enable dark theme": "تفعيل الوضع الداكن",
+    "Disable dark theme": "تعطيل الوضع الداكن",
+    "Mohammad Al-Tarifi, home": "محمد الطريفي، الرئيسية",
+    "Select website language": "اختيار لغة الموقع",
+    "Portfolio opening animation": "الرسوم الافتتاحية للموقع",
+    "I build frontends. I build backends. I test everything.": "أطوّر الواجهات الأمامية والخلفية، وأختبر كل شيء.",
+    "View project": "عرض المشروع",
+    "Please complete all fields.": "يرجى تعبئة جميع الحقول.",
+    "Opening your email app — please send the prepared message there.": "سيتم فتح البريد الإلكتروني؛ يرجى إرسال الرسالة المجهّزة منه."
+});
+  const languageSwitch = $('#languageSwitch');
+  const languageOptions = $$('[data-language]', languageSwitch);
+  const englishTitle = document.title;
+  const descriptionMeta = $('meta[name="description"]');
+  const englishDescription = descriptionMeta?.content || '';
+  const normalizeCopy = (value) => value.replace(/\s+/g, ' ').trim();
+  const translationNodes = [];
+  const translationAttrs = [];
+  let currentLanguage = 'en';
+
+  // Collect source text once so returning to English restores the exact original content.
+  const textWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+  while (textWalker.nextNode()) {
+    const node = textWalker.currentNode;
+    const parent = node.parentElement;
+    if (!parent || parent.closest('.intro, .about-statement, .brand, .footer-brand, .tech-logo, script, style')) continue;
+    const english = normalizeCopy(node.nodeValue);
+    if (english && Object.prototype.hasOwnProperty.call(arabicCopy, english)) {
+      translationNodes.push({ node, englishValue: node.nodeValue, arabic: arabicCopy[english] });
+    }
+  }
+
+  // Translate accessibility and form attributes as well as visible text.
+  $$('[aria-label], [placeholder], [alt], [data-cert-title], [title]').forEach(element => {
+    for (const attribute of ['aria-label', 'placeholder', 'alt', 'data-cert-title', 'title']) {
+      const english = element.getAttribute(attribute);
+      if (english && Object.prototype.hasOwnProperty.call(arabicCopy, english)) {
+        translationAttrs.push({ element, attribute, english, arabic: arabicCopy[english] });
+      }
+    }
+  });
+
+  function translated(value) {
+    return currentLanguage === 'ar' ? (arabicCopy[value] ?? value) : value;
+  }
+
+  function applyLanguage(language) {
+    currentLanguage = language === 'ar' ? 'ar' : 'en';
+    document.documentElement.lang = currentLanguage;
+    // Keep the original LTR page geometry; only Arabic text blocks read RTL.
+    document.documentElement.dir = currentLanguage === 'ar' ? 'rtl' : 'ltr';
+    document.body.classList.toggle('lang-ar', currentLanguage === 'ar');
+
+    translationNodes.forEach(({ node, englishValue, arabic }) => {
+      if (!node.isConnected) return;
+      if (currentLanguage === 'en') {
+        node.nodeValue = englishValue;
+      } else {
+        const leading = englishValue.match(/^\s*/)[0];
+        const trailing = englishValue.match(/\s*$/)[0];
+        node.nodeValue = leading + arabic + trailing;
+      }
+    });
+    translationAttrs.forEach(({ element, attribute, english, arabic }) => {
+      element.setAttribute(attribute, currentLanguage === 'ar' ? arabic : english);
+    });
+
+    document.title = translated(englishTitle);
+    if (descriptionMeta) descriptionMeta.content = translated(englishDescription);
+    languageSwitch.classList.toggle('is-ar', currentLanguage === 'ar');
+    languageSwitch.setAttribute('aria-label', translated('Select website language'));
+    languageOptions.forEach(option => {
+      const active = option.dataset.language === currentLanguage;
+      option.classList.toggle('is-active', active);
+      option.setAttribute('aria-pressed', String(active));
+    });
+
+    // Existing stateful controls should also use the selected language.
+    const menuOpen = $('#menuButton').getAttribute('aria-expanded') === 'true';
+    $('#menuButton').setAttribute('aria-label', translated(menuOpen ? 'Close navigation' : 'Open navigation'));
+    themeToggle.setAttribute('aria-label', translated(darkThemeEnabled ? 'Disable dark theme' : 'Enable dark theme'));
+    const dialog = $('#certificateDialog');
+    if (dialog?.open) {
+      const activeCard = $$('.cert-row[data-cert-image]')[activeCertificate];
+      const title = activeCard?.getAttribute('data-cert-title');
+      if (title) $('#certificateDialogTitle').textContent = translated(title);
+    }
+  }
+
+  languageOptions.forEach(option => option.addEventListener('click', () => {
+    if (option.dataset.language === currentLanguage) return;
+    applyLanguage(option.dataset.language);
+    try {
+      localStorage.setItem('portfolio-language', currentLanguage);
+    } catch (_) { /* Private browsing: the switch still works. */ }
+  }));
+
+  let initialLanguage = 'en';
+  try { initialLanguage = localStorage.getItem('portfolio-language') || 'en'; } catch (_) {}
+  applyLanguage(initialLanguage);
+
   /* ------ Opening — recreated from the reference reel -------------------------------
    * 0.0s  white ball drops, squashes, bounces (glow flash on every hit)
    * 0.8s  a bar drops in above the ball
@@ -345,7 +615,7 @@
   function toggleMenu(force) {
     const open = typeof force === 'boolean' ? force : menuButton.getAttribute('aria-expanded') !== 'true';
     menuButton.setAttribute('aria-expanded', String(open));
-    menuButton.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    menuButton.setAttribute('aria-label', translated(open ? 'Close navigation' : 'Open navigation'));
     mobileNav.hidden = !open;
     siteHeader.classList.toggle('menu-open', open);
   }
@@ -397,9 +667,11 @@
   const hasFinePointer = window.matchMedia('(pointer:fine)').matches;
   if (hasFinePointer && !reduceMotion) {
     window.addEventListener('pointermove', (event) => {
-      cursorGlow.style.opacity = '1';
-      cursorGlow.style.left = `${event.clientX}px`;
-      cursorGlow.style.top = `${event.clientY}px`;
+      if (cursorGlow) {
+        cursorGlow.style.opacity = '1';
+        cursorGlow.style.left = `${event.clientX}px`;
+        cursorGlow.style.top = `${event.clientY}px`;
+      }
       if (window.scrollY > window.innerHeight) return;
       const bounds = visual.getBoundingClientRect();
       const mx = (event.clientX - (bounds.left + bounds.width / 2)) / Math.max(bounds.width, 1);
@@ -417,30 +689,58 @@
     img.addEventListener('error', () => img.classList.remove('is-ready'));
   });
 
-  /* ------ Contact form intentionally opens mail application ------ */
+  /* ------ Portfolio contact: EmailJS (no layout changes) ------ */
+  const emailJsConfig = {
+    serviceId: 'service_fne0fnh',
+    templateId: 'template_c4e75zd',
+    publicKey: 'YOUR_PUBLIC_KEY' // EmailJS > Account > Public Key
+  };
   const form = $('#contactForm');
   const toast = $('#toast');
+  const submitButton = form.querySelector('button[type="submit"]');
+  const submitLabel = submitButton.firstChild;
+  const toastDuration = 4500;
   let toastTimer = null;
+  let sending = false;
   function announce(message) {
     toast.textContent = message;
     toast.classList.add('show');
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove('show'), 4000);
+    toastTimer = setTimeout(() => toast.classList.remove('show'), toastDuration);
   }
-  form.addEventListener('submit', (event) => {
+  function updateSubmitLabel(message) { submitLabel.textContent = '\n        ' + message + '\n        '; }
+  form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    if (!form.reportValidity()) return;
+    if (sending || !form.reportValidity()) return;
     const name = $('#contactName').value.trim();
     const email = $('#contactEmail').value.trim();
     const message = $('#contactMessage').value.trim();
-    if (!name || !email || !message) { announce('Please complete all fields.'); return; }
-    const subject = encodeURIComponent(`Portfolio enquiry from ${name}`);
-    const body = encodeURIComponent(`Hi Mohammad,\n\n${message}\n\nFrom: ${name}\nEmail: ${email}`);
-    // No fake "sent" state: the visitor still sends their message in their own email client.
-    announce('Opening your email app — please send the prepared message there.');
-    window.location.href = `mailto:mo.tatifi2004@gmail.com?subject=${subject}&body=${body}`;
+    if (!name || !email || !message) { announce(translated('Please complete all fields.')); return; }
+    if (!window.emailjs || emailJsConfig.publicKey === 'YOUR_PUBLIC_KEY') {
+      announce(currentLanguage === 'ar' ? 'إعداد الإرسال غير مكتمل. أضف Public Key أولًا.' : 'Email sending is not configured yet. Add your EmailJS Public Key.');
+      return;
+    }
+    sending = true;
+    submitButton.disabled = true;
+    submitButton.setAttribute('aria-busy', 'true');
+    updateSubmitLabel(currentLanguage === 'ar' ? 'جارٍ الإرسال...' : 'SENDING...');
+    try {
+      await window.emailjs.send(emailJsConfig.serviceId, emailJsConfig.templateId, {
+        name, email, message,
+        title: `Portfolio enquiry from ${name}`
+      }, { publicKey: emailJsConfig.publicKey });
+      form.reset();
+      announce(currentLanguage === 'ar' ? 'تم إرسال رسالتك بنجاح! شكرًا لتواصلك.' : 'Your message was sent successfully. Thank you!');
+    } catch (error) {
+      console.error('EmailJS send failed:', error);
+      announce(currentLanguage === 'ar' ? 'تعذّر إرسال الرسالة. حاول مرة أخرى لاحقًا.' : 'Could not send your message. Please try again later.');
+    } finally {
+      sending = false;
+      submitButton.disabled = false;
+      submitButton.removeAttribute('aria-busy');
+      updateSubmitLabel(currentLanguage === 'ar' ? 'إرسال الرسالة' : 'SEND MESSAGE');
+    }
   });
-
 
   /* ------ Card spotlight follows the mouse, without altering layout ------ */
   if (hasFinePointer && !reduceMotion) {
@@ -492,7 +792,7 @@
     const card = certificateCards[activeCertificate];
     const path = card.dataset.certImage;
     const title = card.dataset.certTitle;
-    $('#certificateDialogTitle').textContent = title;
+    $('#certificateDialogTitle').textContent = translated(title);
     $('#certificatePosition').textContent = `${activeCertificate + 1} / ${certificateCards.length}`;
     certificateImageMissing.hidden = true;
     certificateLargeImage.hidden = false;
@@ -500,10 +800,10 @@
     certificateLargeImage.onload = () => { certificateLargeImage.hidden = false; certificateImageMissing.hidden = true; };
     certificateLargeImage.onerror = () => {
       certificateLargeImage.hidden = true;
-      certificateImageMissing.textContent = `Image not found. Put ${path} in your project to see this certificate.`;
+      certificateImageMissing.textContent = currentLanguage === 'ar' ? `الصورة غير موجودة. أضف ${path} إلى المشروع لعرض الشهادة.` : `Image not found. Put ${path} in your project to see this certificate.`;
       certificateImageMissing.hidden = false;
     };
-    certificateLargeImage.alt = `${title} certificate`;
+    certificateLargeImage.alt = currentLanguage === 'ar' ? `شهادة ${translated(title)}` : `${title} certificate`;
     certificateLargeImage.src = path;
   }
   certificateCards.forEach((card, index) => card.addEventListener('click', () => {

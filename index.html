@@ -13,7 +13,8 @@
   <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&amp;family=Inter+Tight:wght@800;900&amp;family=JetBrains+Mono:wght@400;500;600&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
   <link href="style.css" rel="stylesheet"/>
-  <script defer="" src="script.js">
+  <script defer="" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+   <script defer="" src="script.js">
   </script>
  </head>
  <body>
@@ -99,6 +100,20 @@
    <video autoplay="" class="ambient-video" id="ambientVideo" loop="" muted="" playsinline="" poster="assets/programmer-real.webp" preload="metadata">
     <source src="assets/programmer-loop.mp4" type="video/mp4"/>
    </video>
+   <video
+  class="ambient-video ambient-video-light"
+  autoplay
+  muted
+  loop
+  playsinline
+  preload="metadata"
+  poster="assets/programmer-light-poster.webp"
+>
+  <source
+    src="assets/programmer-loop-light.mp4"
+    type="video/mp4"
+  >
+</video>
    <div class="ambient-shade">
    </div>
   </div>
@@ -106,11 +121,12 @@
    <div class="nav-inner shell">
     <a aria-label="Mohammad Al-Tarifi, home" class="brand" href="#home">
      <span class="brand-symbol">
-      M
-      <span>
-       .
-      </span>
-     </span>
+  <img
+    src="assets/favicon.svg"
+    alt=""
+    class="brand-logo"
+  >
+</span>
      <span class="brand-words">
       MOHAMMAD
       <br/>
@@ -137,6 +153,15 @@
      </a>
     </nav>
     <div class="nav-actions">
+     <button
+      class="theme-toggle"
+      id="themeToggle"
+      type="button"
+      aria-label="Enable dark theme"
+      aria-pressed="false"
+     >
+      DARK
+     </button>
      <a class="nav-contact" href="#contact">
       <span class="online-dot">
       </span>
@@ -145,6 +170,11 @@
        ↗
       </span>
      </a>
+      <!-- Language switcher: preserved navbar layout -->
+      <div class="language-switch" id="languageSwitch" role="group" aria-label="Select website language">
+       <button class="language-option is-active" type="button" data-language="en" aria-pressed="true" lang="en">EN</button>
+       <button class="language-option" type="button" data-language="ar" aria-pressed="false" lang="ar">عربي</button>
+      </div>
      <button aria-controls="mobileNav" aria-expanded="false" aria-label="Open navigation" class="menu-button" id="menuButton" type="button">
       <span>
       </span>
@@ -253,17 +283,7 @@
        </span>
       </div>
      </div>
-     <div aria-hidden="true" class="hero-visual hero-visual-clean" id="heroVisual">
-      <span class="photo-scene-label">
-       MY WORKSPACE
-       <span>
-        ↗
-       </span>
-      </span>
-      <span class="photo-scene-crosshair">
-       +  /  BUILDING IDEAS
-      </span>
-     </div>
+
     </div>
     <div class="hero-bottom shell">
      <div class="scroll-note">
@@ -496,20 +516,27 @@
        <p>
         I test software, find bugs, and help fix problems.
        </p>
-       <div class="chips tech-icons">
-        <span class="skill-text-chip">
-         Manual Testing
-        </span>
-        <span class="skill-text-chip">
-         Test Cases
-        </span>
-        <span class="skill-text-chip">
-         Bug Reporting
-        </span>
-        <span aria-label="Jira" class="tech-logo" data-tooltip="Jira" role="img" tabindex="0">
-         <img alt="" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg"/>
-        </span>
-       </div>
+      <div class="chips tech-icons">
+  <!-- Manual Testing -->
+  <span aria-label="Manual Testing" class="tech-logo" data-tooltip="Manual Testing" role="img" tabindex="0">
+    <span style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">🔍</span>
+  </span>
+
+  <!-- Test Cases -->
+  <span aria-label="Test Cases" class="tech-logo" data-tooltip="Test Cases" role="img" tabindex="0">
+    <span style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">📋</span>
+  </span>
+
+  <!-- Bug Reporting -->
+  <span aria-label="Bug Reporting" class="tech-logo" data-tooltip="Bug Reporting" role="img" tabindex="0">
+    <span style="font-size: 1.2rem; display: flex; align-items: center; justify-content: center;">🐛</span>
+  </span>
+
+  <!-- Jira -->
+  <span aria-label="Jira" class="tech-logo" data-tooltip="Jira" role="img" tabindex="0">
+    <img alt="" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/jira/jira-original.svg"/>
+  </span>
+</div>
       </article>
      </div>
     </div>
@@ -564,38 +591,43 @@
         </span>
        </div>
       </article>
-      <article class="project reveal">
-       <div class="project-image">
-        <img alt="Stylized preview for Meet Grid, an ASP.NET web project" loading="lazy" src="assets/meet-grid.svg"/>
-        <span class="project-flag">
-         FIELD TRAINING
+    <article class="project reveal">
+  <div class="project-image">
+    <img alt="Stylized preview for Meet Grid, an ASP.NET web project" loading="lazy" src="assets/meet-grid.svg"/>
+    <span class="project-flag">
+      FIELD TRAINING
+    </span>
+  </div>
+  <div class="project-bottom">
+    <div>
+      <h3>
+        Meet Grid
+      </h3>
+      <p>
+        A web app I built during my training using ASP.NET.
+      </p>
+      <div class="project-tags">
+        <!-- ASP.NET -->
+        <span aria-label="ASP.NET" class="tech-logo project-tech-icon" data-tooltip="ASP.NET" role="img" tabindex="0">
+          <img alt="" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg"/>
         </span>
-       </div>
-       <div class="project-bottom">
-        <div>
-         <h3>
-          Meet Grid
-         </h3>
-         <p>
-          A web app I built during my training using ASP.NET.
-         </p>
-         <div class="project-tags">
-          <span aria-label="ASP.NET" class="tech-logo project-tech-icon" data-tooltip="ASP.NET" role="img" tabindex="0">
-           <img alt="" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg"/>
-          </span>
-          <span aria-label="C#" class="tech-logo project-tech-icon" data-tooltip="C#" role="img" tabindex="0">
-           <img alt="" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"/>
-          </span>
-          <span aria-label="Entity Framework" class="tech-logo project-tech-icon" data-tooltip="Entity Framework" role="img" tabindex="0">
-           <img alt="" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg"/>
-          </span>
-         </div>
-        </div>
-        <span aria-hidden="true" class="project-arrow">
-         ↗
+
+        <!-- C# -->
+        <span aria-label="C#" class="tech-logo project-tech-icon" data-tooltip="C#" role="img" tabindex="0">
+          <img alt="" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"/>
         </span>
-       </div>
-      </article>
+
+        <!-- Entity Framework -->
+        <span aria-label="Entity Framework" class="tech-logo project-tech-icon" data-tooltip="Entity Framework" role="img" tabindex="0">
+          <img alt="" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg"/>
+        </span>
+      </div>
+    </div>
+    <span aria-hidden="true" class="project-arrow">
+      ↗
+    </span>
+  </div>
+</article>
       <article class="project reveal">
        <div class="project-image">
         <img alt="Stylized preview for Class Hub, an instructor dashboard" loading="lazy" src="assets/class-hub.svg"/>
@@ -871,16 +903,21 @@
           Worked on Meet Grid using ASP.NET, C#, and Entity Framework.
          </p>
          <div class="project-tags experience-logos">
-          <span aria-label="ASP.NET" class="tech-logo" data-tooltip="ASP.NET" role="img" tabindex="0">
-           ASP.NET
-          </span>
-          <span aria-label="C#" class="tech-logo" data-tooltip="C#" role="img" tabindex="0">
-           C#
-          </span>
-          <span aria-label="Entity Framework" class="tech-logo" data-tooltip="Entity Framework" role="img" tabindex="0">
-           Entity Framework
-          </span>
-         </div>
+  <!-- ASP.NET -->
+  <span aria-label="ASP.NET" class="tech-logo" data-tooltip="ASP.NET" role="img" tabindex="0">
+    <img alt="ASP.NET" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg"/>
+  </span>
+
+  <!-- C# -->
+  <span aria-label="C#" class="tech-logo" data-tooltip="C#" role="img" tabindex="0">
+    <img alt="C#" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"/>
+  </span>
+
+  <!-- Entity Framework -->
+  <span aria-label="Entity Framework" class="tech-logo" data-tooltip="Entity Framework" role="img" tabindex="0">
+    <img alt="Entity Framework" class="tech-icon-image" loading="lazy" src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/dotnetcore/dotnetcore-original.svg"/>
+  </span>
+</div>
         </div>
        </article>
        <article class="timeline-item reveal">
@@ -976,13 +1013,13 @@
        </label>
        <textarea id="contactMessage" maxlength="3000" name="message" placeholder="Tell me a little about your idea..." required="" rows="5"></textarea>
        <button class="button button-primary contact-submit" type="submit">
-        OPEN EMAIL TO SEND
+        SEND MESSAGE
         <span aria-hidden="true">
          ↗
         </span>
        </button>
        <p class="form-caption" id="formCaption">
-        Opens your email app with a prefilled message. No data is stored here.
+        Your message will be sent directly to my inbox.
        </p>
       </form>
      </div>
@@ -992,10 +1029,13 @@
   <footer class="site-footer">
    <div class="shell footer-top">
     <a class="footer-brand" href="#home">
-     M
-     <span>
-      .
-     </span>
+    <span class="brand-symbol">
+  <img
+    src="assets/favicon.svg"
+    alt=""
+    class="brand-logo"
+  >
+</span>
     </a>
     <div>
      <span>
