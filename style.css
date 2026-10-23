@@ -1632,3 +1632,355 @@ body.theme-beige .contact-panel textarea,
 body.theme-beige .certificate-dialog {
   background: #FFFFFF;
 }
+
+/* FINAL MOBILE LAYOUT */
+@media (max-width: 600px) {
+
+  /* Navbar */
+  .nav-inner {
+    width: calc(100% - 24px);
+    min-height: 70px;
+    gap: 6px;
+  }
+
+  .brand {
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .brand-symbol {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+  }
+
+  .brand-words {
+    font-size: 8px;
+    letter-spacing: 0;
+  }
+
+  .nav-actions {
+    gap: 5px;
+    flex-shrink: 0;
+  }
+
+  .theme-toggle {
+    min-width: 48px;
+    height: 34px;
+    padding: 0 6px;
+    font-size: 8px;
+  }
+
+  .nav-contact {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 7px;
+  }
+
+  .language-switch {
+    width: 78px;
+    height: 34px;
+  }
+
+  .menu-button {
+    width: 36px;
+    height: 36px;
+    flex-shrink: 0;
+  }
+
+  /* Hero */
+  .hero {
+    height: auto;
+    min-height: 100svh;
+    max-height: none;
+    padding: 0;
+  }
+
+  .hero-inner {
+    display: block;
+    padding-top: 125px;
+    padding-bottom: 110px;
+  }
+
+  .hero-title {
+    font-size: clamp(36px, 10vw, 54px);
+    line-height: 1;
+    white-space: normal;
+    letter-spacing: -0.065em;
+  }
+
+  .hero-title-line {
+    overflow: visible;
+  }
+
+  .hero-description {
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .hero-bottom {
+    bottom: 20px;
+  }
+
+  /* About */
+  .about-section {
+    padding: 65px 0;
+  }
+
+  .about-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 30px;
+  }
+
+  .section-aside {
+    gap: 12px;
+  }
+
+  .about-portrait {
+    width: 80px;
+    height: 80px;
+    margin: 0 0 0 auto;
+  }
+
+  .about-name {
+    font-size: clamp(30px, 8vw, 42px);
+    line-height: 1.2;
+  }
+
+  .about-bio p {
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  /* I BUILD / I TEST */
+  .about-section .about-grid > .about-statement {
+    width: 100% !important;
+    margin-top: 30px;
+    padding-top: 25px;
+    gap: 22px;
+  }
+
+  .about-section .about-statement .statement-row {
+    width: 100%;
+    align-items: flex-start;
+  }
+
+  .about-section .about-statement .statement-prefix,
+  .about-section .about-statement .statement-highlight {
+    font-size: clamp(27px, 8vw, 42px);
+    line-height: 1.05;
+    max-width: 100%;
+  }
+
+  .about-section .about-statement .statement-prefix {
+    margin-left: 0 !important;
+  }
+
+  .about-section .about-statement .statement-highlight,
+  .about-section .about-statement .statement-highlight.test {
+    margin: 4px 0 0 12% !important;
+    width: fit-content;
+  }
+
+  /* General spacing */
+  .section-pad {
+    padding-top: 65px;
+    padding-bottom: 65px;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  /* Make I BUILD section use full width */
+  .about-section .about-statement {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .about-section .statement-row {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .about-section .statement-prefix,
+  .about-section .statement-highlight {
+    font-size: clamp(42px, 11vw, 62px) !important;
+    line-height: 1.05;
+    letter-spacing: -0.06em;
+  }
+
+  .about-section .statement-highlight {
+    margin-left: 0 !important;
+    width: fit-content;
+  }
+
+  /* Make EVERYTHING use the available width */
+  .about-section .statement-highlight.test {
+    font-size: clamp(35px, 9vw, 50px) !important;
+    max-width: 100%;
+  }
+
+  /* Bigger profile picture */
+  .about-section .about-portrait {
+    width: 125px;
+    height: 125px;
+    margin-left: auto;
+    margin-right: 0;
+  }
+
+  .about-section .about-portrait img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+@media (max-width: 600px) {
+  .about-section .about-statement .statement-row {
+    align-items: center;
+  }
+
+  .about-section .about-statement .statement-prefix,
+  .about-section .about-statement .statement-highlight,
+  .about-section .about-statement .statement-highlight.test {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  /* I BUILD - FRONT */
+  .about-section .statement-prefixBuildFront {
+    font-size: 55px !important;
+    transform: translateX(-80px);
+  }
+
+  /* FRONT */
+  .about-section .statement-highlight.front {
+    font-size: 55px !important;
+    transform: translateX(30px);
+  }
+
+  /* I BUILD - BACK */
+  .about-section .statement-prefixBuildBack {
+    font-size: 55px !important;
+    transform: translateX(-80px);
+  }
+
+  /* BACK */
+  .about-section .statement-highlight.back {
+    font-size: 55px !important;
+    transform: translateX(30px);
+  }
+
+  /* I TEST */
+  .about-section .statement-prefixTest {
+    font-size: 55px !important;
+    transform: translateX(-80px);
+  }
+
+  /* EVERYTHING */
+  .about-section .statement-highlight.test {
+    font-size: 40px !important;
+    transform: translateX(35px);
+  }
+
+}
+
+
+/* I BUILD inside Hero */
+
+.hero-inner {
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr);
+}
+
+.hero-statement {
+  grid-column: 2;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+  gap: 24px;
+  direction: ltr;
+}
+
+.hero-statement .statement-row {
+  width: 100%;
+  gap: 0;
+}
+
+.hero-statement .statement-prefix,
+.hero-statement .statement-highlight {
+  font-size: clamp(28px, 3.2vw, 54px);
+}
+
+.hero-statement .statement-highlight,
+.hero-statement .statement-highlight.test {
+  margin-left: 20%;
+}
+
+@media (max-width: 980px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-statement {
+    grid-column: 1;
+    width: 100%;
+    max-width: 440px;
+    margin: 35px auto 0;
+    gap: 16px;
+  }
+
+  .hero-statement .statement-row {
+    width: 100%;
+    padding: 0 5%;
+  }
+
+  .hero-statement .statement-prefix,
+  .hero-statement .statement-highlight {
+    font-size: clamp(30px, 8vw, 44px);
+  }
+
+  .hero-statement .statement-highlight,
+  .hero-statement .statement-highlight.test {
+    margin-left: 20%;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-statement {
+    max-width: 100%;
+    margin-top: 30px;
+    gap: 12px;
+  }
+
+  .hero-statement .statement-prefix,
+  .hero-statement .statement-highlight {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+}
+/* Reduce empty space between sections */
+.about-section {
+  padding-top: 70px !important;
+  padding-bottom: 70px !important;
+}
+
+.about-grid {
+  align-items: start;
+}
+
+.expertise {
+  padding-top: 70px !important;
+}
+/* Reduce space before I BUILD */
+.about-section .about-statement {
+  margin-top: 0 !important;
+}
+
+.about-section .about-details {
+  margin-bottom: 0 !important;
+}
+
+
